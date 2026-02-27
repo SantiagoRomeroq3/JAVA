@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programación - Ejercicios</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero-section">
+        <div class="particles"></div>
+        <header class="main-header">
+            <h1 class="title-animated">💻 Ejercicios de Programación</h1>
+            <p class="subtitle">Colección de ejercicios prácticos y funciones en JavaScript</p>
+        </header>
+    </div>
+    <main class="container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar ejercicio..." />
+        </div>
+
+        <nav class="exercises-grid">
+            <!-- Operaciones Básicas -->
+            <div class="category-section">
+                <h2 class="category-title">🔢 Operaciones Básicas</h2>
+                <div class="cards-grid">
+                    <a href="./pages/Expresionesmatematicas.html" class="exercise-card">
+                        <div class="card-icon">📐</div>
+                        <h3>Expresiones Matemáticas</h3>
+                        <p>Evalúa expresiones matemáticas complejas</p>
+                    </a>
+                    <a href="./pages/Sumadedosnumeros.html" class="exercise-card">
+                        <div class="card-icon">➕</div>
+                        <h3>Suma de Dos Números</h3>
+                        <p>Operación básica de suma</p>
+                    </a>
+                    <a href="./pages/Areatriangulo.html" class="exercise-card">
+                        <div class="card-icon">📐</div>
+                        <h3>Área de Triángulo</h3>
+                        <p>Calcula el área utilizando base y altura</p>
+                    </a>
+                    <a href="./pages/Numberimpa.html" class="exercise-card">
+                        <div class="card-icon">🔄</div>
+                        <h3>Par e Impar</h3>
+                        <p>Determina si un número es par o impar</p>
+                    </a>
+                    <a href="./pages/Calculadora.html" class="exercise-card">
+                        <div class="card-icon">🧮</div>
+                        <h3>Calculadora</h3>
+                        <p>Calculadora básica con 4 operaciones</p>
+                    </a>
+                    <a href="./pages/Mayordetres.html" class="exercise-card">
+                        <div class="card-icon">🔝</div>
+                        <h3>Mayor de Tres Números</h3>
+                        <p>Encuentra el número más grande</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Calculadoras Especializadas -->
+            <div class="category-section">
+                <h2 class="category-title">💰 Calculadoras Financieras</h2>
+                <div class="cards-grid">
+                    <a href="./pages/CalculadoraBMI.html" class="exercise-card">
+                        <div class="card-icon">⚖️</div>
+                        <h3>Calculadora BMI</h3>
+                        <p>Índice de masa corporal</p>
+                    </a>
+                    <a href="./pages/Calculadoradescuento.html" class="exercise-card">
+                        <div class="card-icon">🏷️</div>
+                        <h3>Precio con Descuento</h3>
+                        <p>Calcula precios con descuentos</p>
+                    </a>
+                    <a href="./pages/CalculadoraImpuestos.html" class="exercise-card">
+                        <div class="card-icon">🧾</div>
+                        <h3>Factura con Impuestos</h3>
+                        <p>Calcula facturas incluyendo impuestos</p>
+                    </a>
+                    <a href="./pages/CalculadoraAumento.html" class="exercise-card">
+                        <div class="card-icon">💵</div>
+                        <h3>Sueldo con Aumento</h3>
+                        <p>Calcula incrementos salariales</p>
+                    </a>
+                    <a href="./pages/calculadoramultiple.html" class="exercise-card">
+                        <div class="card-icon">🛒</div>
+                        <h3>Compra Múltiple</h3>
+                        <p>Calcula compras con múltiples artículos</p>
+                    </a>
+                    <a href="./pages/Cimpuestossalario.html" class="exercise-card">
+                        <div class="card-icon">💼</div>
+                        <h3>Impuestos sobre Salario</h3>
+                        <p>Calcula deducciones de impuestos</p>
+                    </a>
+                    <a href="./pages/antiguedadempresa.html" class="exercise-card">
+                        <div class="card-icon">🏢</div>
+                        <h3>Antigüedad en Empresa</h3>
+                        <p>Descuentos por años de servicio</p>
+                    </a>
+                    <a href="./pages/Cenviotarifas.html" class="exercise-card">
+                        <div class="card-icon">📦</div>
+                        <h3>Envío con Tarifas</h3>
+                        <p>Calcula costos de envío</p>
+                    </a>
+                    <a href="./pages/lealtadcliente.html" class="exercise-card">
+                        <div class="card-icon">⭐</div>
+                        <h3>Lealtad del Cliente</h3>
+                        <p>Descuentos por fidelidad</p>
+                    </a>
+                    <a href="./pages/descuentovolumen.html" class="exercise-card">
+                        <div class="card-icon">📊</div>
+                        <h3>Descuento por Volumen</h3>
+                        <p>Descuentos según cantidad</p>
+                    </a>
+                    <a href="./pages/Costoservicio.html" class="exercise-card">
+                        <div class="card-icon">🔧</div>
+                        <h3>Costo de Servicio</h3>
+                        <p>Calcula tarifas de servicios</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Condicionales y Lógica -->
+            <div class="category-section">
+                <h2 class="category-title">🔀 Condicionales y Validaciones</h2>
+                <div class="cards-grid">
+                    <a href="./pages/Edadminima.html" class="exercise-card">
+                        <div class="card-icon">🗳️</div>
+                        <h3>Edad Mínima para Votar</h3>
+                        <p>Valida edad requerida</p>
+                    </a>
+                    <a href="./pages/PosiNegaCero.html" class="exercise-card">
+                        <div class="card-icon">➖➕</div>
+                        <h3>Positivo/Negativo/Cero</h3>
+                        <p>Detecta el tipo de número</p>
+                    </a>
+                    <a href="./pages/yearbisiesto.html" class="exercise-card">
+                        <div class="card-icon">📅</div>
+                        <h3>Año Bisiesto</h3>
+                        <p>Determina si un año es bisiesto</p>
+                    </a>
+                    <a href="./pages/Zodiaco.html" class="exercise-card">
+                        <div class="card-icon">♈</div>
+                        <h3>Signo Zodiacal</h3>
+                        <p>Encuentra tu signo del zodíaco</p>
+                    </a>
+                    <a href="./pages/Quincena.html" class="exercise-card">
+                        <div class="card-icon">📆</div>
+                        <h3>Segunda Quincena</h3>
+                        <p>Identifica quincenas del mes</p>
+                    </a>
+                    <a href="./pages/Diasemana.html" class="exercise-card">
+                        <div class="card-icon">📅</div>
+                        <h3>Día de la Semana</h3>
+                        <p>Convierte número a día</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bucles y Repeticiones -->
+            <div class="category-section">
+                <h2 class="category-title">🔁 Bucles y Repeticiones</h2>
+                <div class="cards-grid">
+                    <a href="./pages/tablamultiplicar.html" class="exercise-card">
+                        <div class="card-icon">✖️</div>
+                        <h3>Tabla de Multiplicar</h3>
+                        <p>Genera tablas de multiplicación</p>
+                    </a>
+                    <a href="./pages/MULTIPLICAR.html" class="exercise-card">
+                        <div class="card-icon">🔢</div>
+                        <h3>Tabla hasta el 12</h3>
+                        <p>Multiplicación extendida</p>
+                    </a>
+                    <a href="./pages/sumapares.html" class="exercise-card">
+                        <div class="card-icon">2️⃣</div>
+                        <h3>Suma de Números Pares</h3>
+                        <p>Suma solo números pares</p>
+                    </a>
+                    <a href="./pages/sumaimpares.html" class="exercise-card">
+                        <div class="card-icon">1️⃣</div>
+                        <h3>Suma de Números Impares</h3>
+                        <p>Suma solo números impares</p>
+                    </a>
+                    <a href="./pages/sumanumwhile.html" class="exercise-card">
+                        <div class="card-icon">♾️</div>
+                        <h3>Suma con While</h3>
+                        <p>Suma usando bucle while</p>
+                    </a>
+                    <a href="./pages2/cuentaregresiva.html" class="exercise-card">
+                        <div class="card-icon">⏱️</div>
+                        <h3>Cuenta Regresiva</h3>
+                        <p>Contador descendente</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Manejo de Cadenas -->
+            <div class="category-section">
+                <h2 class="category-title">📝 Manejo de Cadenas</h2>
+                <div class="cards-grid">
+                    <a href="./pages/CopiarPalabra.html" class="exercise-card">
+                        <div class="card-icon">📋</div>
+                        <h3>Copiar Palabra</h3>
+                        <p>Duplica texto ingresado</p>
+                    </a>
+                    <a href="./pages/frasesiguales.html" class="exercise-card">
+                        <div class="card-icon">🔤</div>
+                        <h3>Frases Iguales</h3>
+                        <p>Compara dos textos</p>
+                    </a>
+                    <a href="./pages/vocalescont.html" class="exercise-card">
+                        <div class="card-icon">🅰️</div>
+                        <h3>Contador de Vocales</h3>
+                        <p>Cuenta vocales en texto</p>
+                    </a>
+                    <a href="./pages/contadordigitos.html" class="exercise-card">
+                        <div class="card-icon">🔢</div>
+                        <h3>Contador de Dígitos</h3>
+                        <p>Cuenta números en texto</p>
+                    </a>
+                    <a href="./pages/contadoralfabeto.html" class="exercise-card">
+                        <div class="card-icon">🔤</div>
+                        <h3>Contador de Alfabeto</h3>
+                        <p>Cuenta letras alfabéticas</p>
+                    </a>
+                    <a href="./pages/contadorcaracter.html" class="exercise-card">
+                        <div class="card-icon">📊</div>
+                        <h3>Contador de Caracteres</h3>
+                        <p>Cuenta todos los caracteres</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Juegos -->
+            <div class="category-section">
+                <h2 class="category-title">🎮 Juegos</h2>
+                <div class="cards-grid">
+                    <a href="./pages/adivina.html" class="exercise-card">
+                        <div class="card-icon">🎲</div>
+                        <h3>Adivina el Número</h3>
+                        <p>Juego de adivinanza clásico</p>
+                    </a>
+                    <a href="./pages/piedrapapeltijera.html" class="exercise-card">
+                        <div class="card-icon">✊</div>
+                        <h3>Piedra, Papel o Tijera</h3>
+                        <p>Desafía a la computadora</p>
+                    </a>
+                    <a href="./pages/lanzardado.html" class="exercise-card">
+                        <div class="card-icon">🎲</div>
+                        <h3>Lanzar Dado</h3>
+                        <p>Tira el dado y prueba tu suerte</p>
+                    </a>
+                    <a href="./pages/numerosuerte.html" class="exercise-card">
+                        <div class="card-icon">🍀</div>
+                        <h3>Número de la Suerte</h3>
+                        <p>Genera números aleatorios</p>
+                    </a>
+                    <a href="./pages/mayoromenor.html" class="exercise-card">
+                        <div class="card-icon">🎯</div>
+                        <h3>¿Mayor o Menor?</h3>
+                        <p>Adivina el siguiente número</p>
+                    </a>
+                    <a href="./pages/colorreaccion.html" class="exercise-card">
+                        <div class="card-icon">⚡</div>
+                        <h3>Test de Reacción</h3>
+                        <p>Mide tu velocidad de respuesta</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Arreglos -->
+            <div class="category-section">
+                <h2 class="category-title">📊 Arreglos y Colecciones</h2>
+                <div class="cards-grid">
+                    <a href="./pages2/SUMAELEMENTOS.html" class="exercise-card">
+                        <div class="card-icon">➕</div>
+                        <h3>Suma de Elementos</h3>
+                        <p>Suma todos los elementos de un array</p>
+                    </a>
+                    <a href="./pages2/Promediocali.html" class="exercise-card">
+                        <div class="card-icon">📈</div>
+                        <h3>Promedio de Calificaciones</h3>
+                        <p>Calcula promedio de notas</p>
+                    </a>
+                    <a href="./pages2/maxmin.html" class="exercise-card">
+                        <div class="card-icon">📉</div>
+                        <h3>Mayor y Menor Valor</h3>
+                        <p>Encuentra extremos en array</p>
+                    </a>
+                    <a href="./pages2/Buscarelemento.html" class="exercise-card">
+                        <div class="card-icon">🔍</div>
+                        <h3>Buscar un Elemento</h3>
+                        <p>Encuentra valor en array</p>
+                    </a>
+                    <a href="./pages2/elementospares.html" class="exercise-card">
+                        <div class="card-icon">2️⃣</div>
+                        <h3>Contar Elementos Pares</h3>
+                        <p>Cuenta pares en array</p>
+                    </a>
+                    <a href="./pages2/inversion.html" class="exercise-card">
+                        <div class="card-icon">🔄</div>
+                        <h3>Inversión de Arreglo</h3>
+                        <p>Invierte el orden de elementos</p>
+                    </a>
+                    <a href="./pages2/indice.html" class="exercise-card">
+                        <div class="card-icon">📍</div>
+                        <h3>Buscar el Índice</h3>
+                        <p>Encuentra posición de elemento</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Funciones -->
+            <div class="category-section">
+                <h2 class="category-title">⚡ Funciones</h2>
+                <div class="cards-grid">
+                    <a href="./pages2/funcionsaludar.html" class="exercise-card">
+                        <div class="card-icon">👋</div>
+                        <h3>Función Saludar</h3>
+                        <p>Función básica de saludo</p>
+                    </a>
+                    <a href="./pages2/FUNCIONSUMADOS.html" class="exercise-card">
+                        <div class="card-icon">➕</div>
+                        <h3>Función Suma</h3>
+                        <p>Suma dos números con función</p>
+                    </a>
+                    <a href="./pages2/FUNCIONMULTIPLICAR.html" class="exercise-card">
+                        <div class="card-icon">✖️</div>
+                        <h3>Función Multiplicar</h3>
+                        <p>Multiplica números con función</p>
+                    </a>
+                    <a href="./pages2/FUNCIONPARIMPAR.html" class="exercise-card">
+                        <div class="card-icon">🔢</div>
+                        <h3>Función Par o Impar</h3>
+                        <p>Determina paridad con función</p>
+                    </a>
+                    <a href="./pages2/FUNCIONAREATRI.html" class="exercise-card">
+                        <div class="card-icon">📐</div>
+                        <h3>Función Área Triángulo</h3>
+                        <p>Calcula área con función</p>
+                    </a>
+                    <a href="./pages2/FUNCIONIMPRIMIRN.html" class="exercise-card">
+                        <div class="card-icon">📝</div>
+                        <h3>Función Imprimir Nombre</h3>
+                        <p>Imprime tu nombre</p>
+                    </a>
+                    <a href="./pages2/FUNCIONCONVERSION.html" class="exercise-card">
+                        <div class="card-icon">🌡️</div>
+                        <h3>Conversión Temperatura</h3>
+                        <p>Celsius a Fahrenheit</p>
+                    </a>
+                    <a href="./pages2/FUNCIONCARACTERES.html" class="exercise-card">
+                        <div class="card-icon">🔤</div>
+                        <h3>Función Contar Caracteres</h3>
+                        <p>Cuenta caracteres con función</p>
+                    </a>
+                    <a href="./pages2/FUNCION1AL10.html" class="exercise-card">
+                        <div class="card-icon">🔢</div>
+                        <h3>Números del 1 al 10</h3>
+                        <p>Imprime secuencia numérica</p>
+                    </a>
+                    <a href="./pages2/FUNCIONSUMAELEMENTOS.html" class="exercise-card">
+                        <div class="card-icon">➕</div>
+                        <h3>Función Suma Elementos</h3>
+                        <p>Suma elementos con función</p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </main>
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>💡 Ejercicios de Programación en JavaScript</p>
+            <p class="footer-credits">Desarrollado por Santiago Romero © 2026</p>
+            <p class="footer-info">Total de ejercicios: <span id="totalExercises">75+</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidad de búsqueda
+        const searchInput = document.getElementById('searchInput');
+        const exerciseCards = document.querySelectorAll('.exercise-card');
+        const categorySection = document.querySelectorAll('.category-section');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            categorySection.forEach(section => {
+                let hasVisibleCards = false;
+                const cards = section.querySelectorAll('.exercise-card');
+                
+                cards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                        hasVisibleCards = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Mostrar u ocultar la sección completa si no tiene tarjetas visibles
+                if (hasVisibleCards || searchTerm === '') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Animación de entrada
+        window.addEventListener('load', () => {
+            exerciseCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 30);
+            });
+        });
+
+        // Efecto de partículas en el header
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+    </script>
+</body>
+</html>

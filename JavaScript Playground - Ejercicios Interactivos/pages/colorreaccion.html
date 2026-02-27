@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Reacción</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .reaction-box {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            margin: 30px auto;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        .reaction-box.waiting {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .reaction-box.ready {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        .reaction-box.go {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+        .attempts-list {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .attempt-item {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-weight: 600;
+            color: #667eea;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .stat-item {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚡ Test de Reacción</h1>
+        <h5>¡Pon a prueba tu velocidad de reacción!</h5>
+    </header>
+    
+    <main class="recuadro">
+        <h3 style="color: #667eea; margin-bottom: 20px;">Haz clic cuando veas el color verde</h3>
+
+        <div class="reaction-box waiting" id="reactionBox" onclick="handleClick()">
+            <p id="boxMessage">Haz clic para comenzar</p>
+        </div>
+
+        <div id="resultsContainer" style="display: none;">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="lastTime">-</div>
+                    <div class="stat-label">Último tiempo (ms)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="bestTime">-</div>
+                    <div class="stat-label">Mejor tiempo (ms)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="avgTime">-</div>
+                    <div class="stat-label">Promedio (ms)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="attempts">0</div>
+                    <div class="stat-label">Intentos</div>
+                </div>
+            </div>
+
+            <h4 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Historial de tiempos:</h4>
+            <div class="attempts-list" id="attemptsList"></div>
+        </div>
+
+        <button id="botoncito" onclick="resetStats()" style="margin-top: 20px; background: white; color: #667eea; border: 2px solid #667eea;">
+            🔄 Reiniciar Estadísticas
+        </button>
+        
+        <div><a id="botoncito" href="../index.html">← Volver al Inicio</a></div>
+    </main>
+
+    <script>
+        let gameState = 'waiting'; // waiting, ready, go
+        let startTime = 0;
+        let timeout = null;
+        let times = [];
+
+        function handleClick() {
+            const box = document.getElementById('reactionBox');
+            const message = document.getElementById('boxMessage');
+
+            if (gameState === 'waiting') {
+                // Iniciar el juego
+                gameState = 'ready';
+                box.className = 'reaction-box ready';
+                message.textContent = 'Espera...';
+                
+                // Tiempo aleatorio entre 1-5 segundos
+                const delay = Math.random() * 4000 + 1000;
+                timeout = setTimeout(() => {
+                    gameState = 'go';
+                    box.className = 'reaction-box go';
+                    message.textContent = '¡HAZ CLIC AHORA!';
+                    startTime = Date.now();
+                }, delay);
+            } else if (gameState === 'ready') {
+                // Click demasiado pronto
+                clearTimeout(timeout);
+                box.className = 'reaction-box waiting';
+                message.innerHTML = '😅 ¡Demasiado pronto!<br>Haz clic para intentar de nuevo';
+                gameState = 'waiting';
+            } else if (gameState === 'go') {
+                // Registrar el tiempo
+                const reactionTime = Date.now() - startTime;
+                times.push(reactionTime);
+                updateStats(reactionTime);
+                
+                // Resetear para siguiente intento
+                box.className = 'reaction-box waiting';
+                message.innerHTML = `¡Excelente!<br>Haz clic para intentar de nuevo`;
+                gameState = 'waiting';
+            }
+        }
+
+        function updateStats(lastTime) {
+            document.getElementById('resultsContainer').style.display = 'block';
+            document.getElementById('lastTime').textContent = lastTime;
+            document.getElementById('attempts').textContent = times.length;
+
+            // Mejor tiempo
+            const best = Math.min(...times);
+            document.getElementById('bestTime').textContent = best;
+
+            // Promedio
+            const avg = Math.round(times.reduce((a, b) => a + b, 0) / times.length);
+            document.getElementById('avgTime').textContent = avg;
+
+            // Actualizar lista de intentos
+            const attemptsList = document.getElementById('attemptsList');
+            attemptsList.innerHTML = times.slice(-10).reverse().map((time, index) => 
+                `<div class="attempt-item">${time}ms</div>`
+            ).join('');
+        }
+
+        function resetStats() {
+            times = [];
+            gameState = 'waiting';
+            clearTimeout(timeout);
+            
+            document.getElementById('reactionBox').className = 'reaction-box waiting';
+            document.getElementById('boxMessage').textContent = 'Haz clic para comenzar';
+            document.getElementById('resultsContainer').style.display = 'none';
+            document.getElementById('lastTime').textContent = '-';
+            document.getElementById('bestTime').textContent = '-';
+            document.getElementById('avgTime').textContent = '-';
+            document.getElementById('attempts').textContent = '0';
+            document.getElementById('attemptsList').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

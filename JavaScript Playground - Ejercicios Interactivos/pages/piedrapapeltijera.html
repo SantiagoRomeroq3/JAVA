@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .game-options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .option-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .option-btn:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+        .option-btn:active {
+            transform: translateY(-5px) scale(1.05);
+        }
+        .game-result {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .choice-display {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+        .choice-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 10px;
+        }
+        .score-board {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+        .score-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>✊✋✌️ Piedra, Papel o Tijera</h1>
+        <h5>¡Elige tu opción y desafía a la computadora!</h5>
+    </header>
+    
+    <main class="recuadro">
+        <h3 style="color: #667eea; margin-bottom: 20px;">Elige tu jugada:</h3>
+        
+        <div class="game-options">
+            <button class="option-btn" onclick="playGame('piedra')">✊</button>
+            <button class="option-btn" onclick="playGame('papel')">✋</button>
+            <button class="option-btn" onclick="playGame('tijera')">✌️</button>
+        </div>
+
+        <div class="game-result" id="resultado">
+            <p>Haz tu elección para comenzar...</p>
+        </div>
+
+        <div class="score-board" id="scoreBoard" style="display: none;">
+            <div class="score-item">
+                Victorias: <span id="wins">0</span>
+            </div>
+            <div class="score-item">
+                Empates: <span id="ties">0</span>
+            </div>
+            <div class="score-item">
+                Derrotas: <span id="losses">0</span>
+            </div>
+        </div>
+
+        <button id="botoncito" onclick="resetGame()" style="margin-top: 20px;">🔄 Reiniciar Puntuación</button>
+        <div><a id="botoncito" href="../index.html">← Volver al Inicio</a></div>
+    </main>
+
+    <script>
+        let wins = 0;
+        let losses = 0;
+        let ties = 0;
+
+        function playGame(playerChoice) {
+            const choices = ['piedra', 'papel', 'tijera'];
+            const emojis = { piedra: '✊', papel: '✋', tijera: '✌️' };
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            
+            let result = '';
+            let resultClass = '';
+            
+            if (playerChoice === computerChoice) {
+                result = '🤝 ¡Es un empate!';
+                ties++;
+            } else if (
+                (playerChoice === 'piedra' && computerChoice === 'tijera') ||
+                (playerChoice === 'papel' && computerChoice === 'piedra') ||
+                (playerChoice === 'tijera' && computerChoice === 'papel')
+            ) {
+                result = '🎉 ¡Ganaste!';
+                wins++;
+            } else {
+                result = '😔 Perdiste...';
+                losses++;
+            }
+            
+            document.getElementById('resultado').innerHTML = `
+                <div class="choice-display">
+                    <div class="choice-item">
+                        <strong>Tú:</strong> ${emojis[playerChoice]}
+                    </div>
+                    <div class="choice-item">
+                        <strong>PC:</strong> ${emojis[computerChoice]}
+                    </div>
+                </div>
+                <div style="font-size: 1.5rem; margin-top: 15px;">${result}</div>
+            `;
+            
+            document.getElementById('wins').textContent = wins;
+            document.getElementById('losses').textContent = losses;
+            document.getElementById('ties').textContent = ties;
+            document.getElementById('scoreBoard').style.display = 'flex';
+        }
+
+        function resetGame() {
+            wins = 0;
+            losses = 0;
+            ties = 0;
+            document.getElementById('wins').textContent = '0';
+            document.getElementById('losses').textContent = '0';
+            document.getElementById('ties').textContent = '0';
+            document.getElementById('resultado').innerHTML = '<p>Haz tu elección para comenzar...</p>';
+            document.getElementById('scoreBoard').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

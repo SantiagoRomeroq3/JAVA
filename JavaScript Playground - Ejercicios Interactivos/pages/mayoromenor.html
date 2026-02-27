@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Mayor o Menor?</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .game-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 160px;
+            height: 220px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+            transition: all 0.3s ease;
+        }
+        .card-number {
+            font-size: 5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .game-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .choice-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .choice-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+        .choice-btn.higher {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .choice-btn.lower {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .score-display {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .score-box {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .score-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+        .score-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .result-message {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 20px 0;
+            min-height: 30px;
+        }
+        .result-message.correct { color: #38ef7d; }
+        .result-message.wrong { color: #f5576c; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎯 ¿Mayor o Menor?</h1>
+        <h5>¡Adivina si el siguiente número será mayor o menor!</h5>
+    </header>
+    
+    <main class="recuadro">
+        <div class="score-display">
+            <div class="score-box">
+                <div class="score-label">Puntuación</div>
+                <div class="score-value" id="score">0</div>
+            </div>
+            <div class="score-box">
+                <div class="score-label">Racha</div>
+                <div class="score-value" id="streak">0</div>
+            </div>
+            <div class="score-box">
+                <div class="score-label">Mejor Racha</div>
+                <div class="score-value" id="bestStreak">0</div>
+            </div>
+        </div>
+
+        <h3 style="color: #667eea;">Número actual:</h3>
+        <div class="game-card">
+            <div class="card-number" id="currentNumber">-</div>
+        </div>
+
+        <div class="result-message" id="resultMessage">&nbsp;</div>
+
+        <div class="game-buttons" id="gameButtons" style="display: none;">
+            <button class="choice-btn higher" onclick="makeGuess('higher')">
+                ⬆️ MAYOR
+            </button>
+            <button class="choice-btn lower" onclick="makeGuess('lower')">
+                ⬇️ MENOR
+            </button>
+        </div>
+
+        <button id="botoncito" onclick="startGame()" style="font-size: 1.2rem; padding: 18px 50px;">
+            🎮 Comenzar Juego
+        </button>
+
+        <button id="botoncito" onclick="resetGame()" style="margin-top: 10px; background: white; color: #667eea; border: 2px solid #667eea;">
+            🔄 Reiniciar Puntuación
+        </button>
+        
+        <div><a id="botoncito" href="../index.html">← Volver al Inicio</a></div>
+    </main>
+
+    <script>
+        let currentNum = 0;
+        let nextNum = 0;
+        let score = 0;
+        let streak = 0;
+        let bestStreak = 0;
+        let gameStarted = false;
+
+        function startGame() {
+            currentNum = Math.floor(Math.random() * 100) + 1;
+            document.getElementById('currentNumber').textContent = currentNum;
+            document.getElementById('gameButtons').style.display = 'flex';
+            document.getElementById('resultMessage').innerHTML = '¿Será el siguiente número mayor o menor?';
+            document.getElementById('resultMessage').className = 'result-message';
+            gameStarted = true;
+        }
+
+        function makeGuess(guess) {
+            if (!gameStarted) return;
+
+            nextNum = Math.floor(Math.random() * 100) + 1;
+            
+            // Evitar números iguales
+            while (nextNum === currentNum) {
+                nextNum = Math.floor(Math.random() * 100) + 1;
+            }
+
+            const isCorrect = (guess === 'higher' && nextNum > currentNum) || 
+                            (guess === 'lower' && nextNum < currentNum);
+
+            const resultMsg = document.getElementById('resultMessage');
+            
+            if (isCorrect) {
+                score += 10;
+                streak++;
+                if (streak > bestStreak) bestStreak = streak;
+                resultMsg.textContent = `✅ ¡Correcto! Era ${nextNum}`;
+                resultMsg.className = 'result-message correct';
+            } else {
+                streak = 0;
+                resultMsg.textContent = `❌ Incorrecto. Era ${nextNum}`;
+                resultMsg.className = 'result-message wrong';
+            }
+
+            // Actualizar display
+            document.getElementById('score').textContent = score;
+            document.getElementById('streak').textContent = streak;
+            document.getElementById('bestStreak').textContent = bestStreak;
+            
+            // Animación de cambio de número
+            setTimeout(() => {
+                currentNum = nextNum;
+                document.getElementById('currentNumber').textContent = currentNum;
+            }, 1500);
+        }
+
+        function resetGame() {
+            score = 0;
+            streak = 0;
+            bestStreak = 0;
+            gameStarted = false;
+            document.getElementById('score').textContent = '0';
+            document.getElementById('streak').textContent = '0';
+            document.getElementById('bestStreak').textContent = '0';
+            document.getElementById('currentNumber').textContent = '-';
+            document.getElementById('resultMessage').innerHTML = '&nbsp;';
+            document.getElementById('resultMessage').className = 'result-message';
+            document.getElementById('gameButtons').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

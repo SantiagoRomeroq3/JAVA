@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simple</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="../js/main.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🧮 Calculadora Simple</h1>
+        <h5>Realiza operaciones matemáticas básicas</h5>
+    </header>
+    <section class="recuadro">
+        <main>        
+            <label for="n1">Ingresa un numero</label>
+            <input  type="number" placeholder="Ingresa un numero" value="" id="n1" required/>
+            <label for="operador">Ingresa un operador (+, -, *, /)</label>
+            <input type="text" id="operador" pattern="[+\-*/]" placeholder="Ingresa (+, -, *, /)" required/>
+            <label for="n2">Ingresa otro numero</label>
+            <input type="number" placeholder="Ingresa un numero" value="" id="n2" required />
+            <button type="submit" id="botoncito" onclick="ope.Ejercicio14()">Ver resultado</button>
+            <div class="Respuesta">
+                <span id="Respuesta14">Aqui va Resultado</span>
+                
+            </div>
+            <div><a id="botoncito" href="../index.html">Regresar</a></div>
+        </main>
+    </section>
+</body>
+</html>

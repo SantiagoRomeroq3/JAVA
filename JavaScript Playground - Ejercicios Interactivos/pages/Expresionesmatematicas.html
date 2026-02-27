@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expresiones Matemáticas</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="../js/main.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .expressions-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .expression-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .expression-card:hover {
+            transform: translateY(-5px);
+        }
+        .expression-title {
+            color: #667eea;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .expression-formula {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        .result-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .btn-calculate {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+        .back-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 30px auto;
+            display: block;
+            width: fit-content;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📐 Expresiones Matemáticas</h1>
+        <h5>Resuelve operaciones matemáticas con diferentes variables</h5>
+    </header>
+    
+    <div class="expressions-container">
+        <div class="expression-card">
+            <div class="expression-title">1. Dado a=3 y b=7, encuentra el valor de:</div>
+            <div class="expression-formula">y = 2 * a + b - a mod 3</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio1()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta1">--</span></div>
+        </div>
+
+        <div class="expression-card">
+            <div class="expression-title">2. Si a=10 y b=4, calcula el valor de:</div>
+            <div class="expression-formula">z = a * b + 3 mod a + b</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio2()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta2">--</span></div>
+        </div>
+
+        <div class="expression-card">
+            <div class="expression-title">3. Con a=6 y b=2, determina el valor de:</div>
+            <div class="expression-formula">w = a - b + 2 * a mod b</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio3()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta3">--</span></div>
+        </div>
+
+        <div class="expression-card">
+            <div class="expression-title">4. Para a=8 y b=5, encuentra el valor de:</div>
+            <div class="expression-formula">v = 2 * b + a div 2 + 4 * b mod a</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio4()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta4">--</span></div>
+        </div>
+
+        <div class="expression-card">
+            <div class="expression-title">5. Si a=12 y b=9, calcula el valor de:</div>
+            <div class="expression-formula">u = b - a + 3 * a mod b</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio5()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta5">--</span></div>
+        </div>
+
+        <div class="expression-card">
+            <div class="expression-title">6. Evalúa la siguiente expresión:</div>
+            <div class="expression-formula">( 5 + 3 * 2) + 9 > 3 * 5 * 14 % 3</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio6()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta6">--</span></div>
+        </div>
+
+        <div class="expression-card">
+            <div class="expression-title">7. Calcula:</div>
+            <div class="expression-formula">2 * ( 4 - 10 + 8) / 2 * 36 * (1 / 2)</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio7()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta7">--</span></div>
+        </div>
+
+        <div class="expression-card">
+            <div class="expression-title">8. Resuelve:</div>
+            <div class="expression-formula">260 / 12 + 54 % 3 - 85 % 7</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio8()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta8">--</span></div>
+        </div>
+
+        <div class="expression-card">
+            <div class="expression-title">9. Evalúa la expresión lógica:</div>
+            <div class="expression-formula">( 48 < 2 * 3 ) || ( 2 * 7 < 12 )</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio9()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta9">--</span></div>
+        </div>
+
+        <div class="expression-card">
+            <div class="expression-title">10. Calcula la expresión:</div>
+            <div class="expression-formula">( ( 8 > 2 ) || ( 932 < 23 ) ) && 4 == 2</div>
+            <button class="btn-calculate" onclick="ope.Ejercicio10()">Calcular</button>
+            <div class="result-display">Resultado: <span id="Respuesta10">--</span></div>
+        </div>
+
+        <a href="../index.html" class="back-button">← Volver al Inicio</a>
+    </div>
+</body>
+</html>

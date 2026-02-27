@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanzar Dado</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .dice-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+        }
+        .dice {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .dice.rolling {
+            animation: roll 0.5s ease-in-out;
+        }
+        @keyframes roll {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(0.8); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            75% { transform: rotate(270deg) scale(0.8); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .stat-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎲 Lanzar Dado</h1>
+        <h5>¡Lanza el dado y prueba tu suerte!</h5>
+    </header>
+    
+    <main class="recuadro">
+        <div class="dice-container">
+            <div class="dice" id="dice">🎲</div>
+        </div>
+
+        <button id="botoncito" onclick="rollDice()" style="font-size: 1.2rem; padding: 18px 50px;">
+            🎲 Lanzar Dado
+        </button>
+
+        <div class="Respuesta" id="resultado" style="margin-top: 30px; display: none;">
+            ¡Obtuviste un <span id="resultNumber">-</span>!
+        </div>
+
+        <div class="stats-container" id="stats" style="display: none;">
+            <div class="stat-box">
+                <div class="stat-number" id="total">0</div>
+                <div class="stat-label">Total de lanzamientos</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="highest">-</div>
+                <div class="stat-label">Más alto</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="lowest">-</div>
+                <div class="stat-label">Más bajo</div>
+            </div>
+        </div>
+
+        <button id="botoncito" onclick="resetStats()" style="margin-top: 20px; background: white; color: #667eea; border: 2px solid #667eea;">
+            🔄 Reiniciar Estadísticas
+        </button>
+        
+        <div><a id="botoncito" href="../index.html">← Volver al Inicio</a></div>
+    </main>
+
+    <script>
+        const diceEmojis = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+        let rollCount = 0;
+        let highestRoll = null;
+        let lowestRoll = null;
+
+        function rollDice() {
+            const diceElement = document.getElementById('dice');
+            const resultElement = document.getElementById('resultado');
+            const resultNumber = document.getElementById('resultNumber');
+            
+            // Animación de giro
+            diceElement.classList.add('rolling');
+            
+            // Simular el giro
+            let counter = 0;
+            const rollInterval = setInterval(() => {
+                const tempNum = Math.floor(Math.random() * 6) + 1;
+                diceElement.textContent = diceEmojis[tempNum - 1];
+                counter++;
+                
+                if (counter > 10) {
+                    clearInterval(rollInterval);
+                    const finalNumber = Math.floor(Math.random() * 6) + 1;
+                    diceElement.textContent = diceEmojis[finalNumber - 1];
+                    diceElement.classList.remove('rolling');
+                    
+                    // Mostrar resultado
+                    resultNumber.textContent = finalNumber;
+                    resultElement.style.display = 'flex';
+                    
+                    // Actualizar estadísticas
+                    updateStats(finalNumber);
+                }
+            }, 50);
+        }
+
+        function updateStats(number) {
+            rollCount++;
+            
+            if (highestRoll === null || number > highestRoll) {
+                highestRoll = number;
+            }
+            
+            if (lowestRoll === null || number < lowestRoll) {
+                lowestRoll = number;
+            }
+            
+            document.getElementById('total').textContent = rollCount;
+            document.getElementById('highest').textContent = highestRoll;
+            document.getElementById('lowest').textContent = lowestRoll;
+            document.getElementById('stats').style.display = 'grid';
+        }
+
+        function resetStats() {
+            rollCount = 0;
+            highestRoll = null;
+            lowestRoll = null;
+            document.getElementById('total').textContent = '0';
+            document.getElementById('highest').textContent = '-';
+            document.getElementById('lowest').textContent = '-';
+            document.getElementById('stats').style.display = 'none';
+            document.getElementById('resultado').style.display = 'none';
+            document.getElementById('dice').textContent = '🎲';
+        }
+    </script>
+</body>
+</html>
