@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/main.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Calculadora simple</h1>
+        
+    </header>
+    <section class="recuadro">
+        <main>        
+            <label for="n1">Ingresa un numero</label>
+            <input  type="number" placeholder="Ingresa un numero" value="" id="n1" required/>
+            <label for="operador">Ingresa un operador (+, -, *, /)</label>
+            <input type="text" id="operador" pattern="[+\-*/]" placeholder="Ingresa (+, -, *, /)" required/>
+            <label for="n2">Ingresa otro numero</label>
+            <input type="number" placeholder="Ingresa un numero" value="" id="n2" required />
+            <button type="submit" id="botoncito" onclick="ope.Ejercicio14()">Ver resultado</button>
+            <div class="Respuesta">
+                <span id="Respuesta14">Aqui va Resultado</span>
+                
+            </div>
+            <div><a id="botoncito" href="../index.html">Regresar</a></div>
+        </main>
+    </section>
+</body>
+</html>
